@@ -5,6 +5,7 @@ import com.example.material_service.model.Material;
 import com.example.material_service.repository.MaterialRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class MaterialService {
     }
 
     public Material guardarMaterial(Material material) {
+        material.setCreated_at(LocalDateTime.now());
         return materialRepository.save(material);
     }
 

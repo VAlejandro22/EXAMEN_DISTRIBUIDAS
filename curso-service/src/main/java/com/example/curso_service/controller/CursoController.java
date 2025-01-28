@@ -1,8 +1,7 @@
 package com.example.curso_service.controller;
 
-
 import com.example.curso_service.model.Curso;
-import com.example.curso_service.model.CursoMaterial;
+import com.example.curso_service.model.Material;
 import com.example.curso_service.service.CursoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,14 +34,20 @@ public class CursoController {
     }
 
     @GetMapping("/{cursoId}/materiales")
-    public List<CursoMaterial> listarMaterialesDeCurso(@PathVariable Long cursoId) {
-        return cursoService.listarMaterialesDeCurso(cursoId);
+    public ResponseEntity<List<Material>> listarMaterialesDeCurso(@PathVariable Long cursoId) {
+        List<Material> materiales = cursoService.listarMaterialesDeCurso(cursoId);
+        return ResponseEntity.ok(materiales);
     }
 
-    @DeleteMapping("/materiales/{cursoMaterialId}")
-    public ResponseEntity<String> eliminarMaterialDeCurso(@PathVariable Long cursoMaterialId) {
-        cursoService.eliminarMaterialDeCurso(cursoMaterialId);
+    @GetMapping("/materiales/{materialId}/cursos")
+    public ResponseEntity<List<Curso>> listarCursosDeMaterial(@PathVariable Long materialId) {
+        List<Curso> cursos = cursoService.listarCursosDeMaterial(materialId);
+        return ResponseEntity.ok(cursos);
+    }
+
+    @DeleteMapping("/{cursoId}/materiales/{materialId}")
+    public ResponseEntity<String> eliminarMaterialDeCurso(@PathVariable Long cursoId, @PathVariable Long materialId) {
+        cursoService.eliminarMaterialDeCurso(cursoId, materialId);
         return ResponseEntity.ok("Material eliminado del curso");
     }
 }
-

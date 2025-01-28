@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,8 +23,25 @@ public class Curso {
     private int duracion; // en horas
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
-    private List<CursoMaterial> cursoMateriales;
+    private List<CursoMaterial> cursoMateriales =  new ArrayList<>();
 
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime created_at;
+
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = LocalDateTime.now();
+    }
+
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
 
     public Long getId() {
         return id;

@@ -1,9 +1,7 @@
-package com.example.material_service.repository;
+package com.example.materialservice.repository;
 
-
-import com.example.material_service.model.Material;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.materialservice.entity.Material;
 
 public interface MaterialRepository extends JpaRepository<Material, Long> {
-
 }

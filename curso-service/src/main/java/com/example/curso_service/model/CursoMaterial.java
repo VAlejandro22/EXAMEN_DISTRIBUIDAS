@@ -20,11 +20,9 @@ public class CursoMaterial {
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
-    @ManyToOne
-    @JoinColumn(name = "material_id")
-    private Material material;
+    private Long materialId;
 
-    private LocalDate fechaAsignacion;
+    private LocalDate fechaAsignacion = LocalDate.now();
 
     public Long getId() {
         return id;
@@ -42,12 +40,12 @@ public class CursoMaterial {
         this.curso = curso;
     }
 
-    public Material getMaterial() {
-        return material;
+    public Long getMaterialId() {
+        return materialId;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setMaterialId(Long materialId) {
+        this.materialId = materialId;
     }
 
     public LocalDate getFechaAsignacion() {

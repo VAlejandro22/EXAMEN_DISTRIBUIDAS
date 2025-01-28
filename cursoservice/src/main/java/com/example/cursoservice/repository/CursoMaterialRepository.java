@@ -1,14 +1,12 @@
-package com.example.curso_service.repository;
+package com.example.cursoservice.repository;
 
-
-import com.example.curso_service.model.CursoMaterial;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.cursoservice.entity.CursoMaterial;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CursoMaterialRepository extends JpaRepository<CursoMaterial, Long> {
     List<CursoMaterial> findByCursoId(Long cursoId);
     List<CursoMaterial> findByMaterialId(Long materialId);
-    Optional<CursoMaterial> findByCursoIdAndMaterialId(Long cursoId, Long playerId);
+    void deleteByCursoIdAndMaterialId(Long cursoId, Long materialId);
 }
